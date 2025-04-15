@@ -4,5 +4,3 @@ export const GRID_COLUMNS = [
 ]
 
 export const PAGE_ROW_SIZE = 20
-
-export default GRID_COLUMNS
