@@ -1,0 +1,32 @@
+{
+  "name": "pokedex-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "yarn workspace pokedex start",
+    "build": "yarn workspaces foreach -pv run build",
+    "test": "yarn workspaces foreach -pv run test",
+    "lint": "yarn workspaces foreach -pv run lint",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
+    "eslint": "^8.40.0",
+    "eslint-config-next": "^13.4.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "lerna": "^6.0.0",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "next-transpile-modules": "^10.0.1",
+    "react": "^18.2.0"
+  }
+}

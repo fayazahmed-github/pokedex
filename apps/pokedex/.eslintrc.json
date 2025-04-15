@@ -1,0 +1,12 @@
+{
+    "extends": [
+      "next/core-web-vitals",
+      "../../.eslintrc.json"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "rules": {
+      "react-hooks/exhaustive-deps": "warn",
+      "@next/next/no-img-element": "off"
+    }
+  }

@@ -1,0 +1,12 @@
+{
+    "root": true,
+    "ignorePatterns": ["**/dist", "**/node_modules"],
+    "overrides": [
+      {
+        "files": ["*.ts", "*.tsx"],
+        "parserOptions": {
+          "project": ["./tsconfig.json"]
+        }
+      }
+    ]
+  }
