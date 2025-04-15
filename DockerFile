@@ -1,0 +1,39 @@
+# Root directory Dockerfile
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json yarn.lock ./
+COPY packages/components/package.json ./packages/components/
+COPY packages/utils/package.json ./packages/utils/
+COPY apps/pokedex/package.json ./apps/pokedex/
+
+# Install dependencies
+RUN yarn install --frozen-lockfile --network-timeout 1000000
+
+# Copy source files
+COPY . .
+
+# Build all packages using Lerna
+RUN npx lerna run build --stream --concurrency 1 --sort
+
+# Build Next.js app
+RUN cd apps/pokedex && yarn build
+
+# Production image
+FROM node:18-alpine AS runner
+WORKDIR /app
+
+ENV NODE_ENV production
+
+# Copy necessary files
+COPY --from=builder /app/apps/pokedex/ ./apps/pokedex/
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/packages/components/dist ./node_modules/@monorepo/components
+COPY --from=builder /app/packages/utils/dist ./node_modules/@monorepo/utils
+
+WORKDIR /app/apps/pokedex
+
+EXPOSE 3000
+CMD ["yarn", "start"]
