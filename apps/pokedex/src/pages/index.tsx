@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { NextPage } from 'next';
 import { wrapper } from '../store';
-import { GRID_COLUMNS, PAGE_ROW_SIZE } from './constants'
+import { GRID_COLUMNS, PAGE_ROW_SIZE } from '../constants'
 
 const Home: NextPage = () => {
   const list = useAppSelector((state) => state.pokemon.list)
