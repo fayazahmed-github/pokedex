@@ -51,7 +51,7 @@ const pokemonSlice = createSlice({
         return {
           ...state,
           ...serverState,
-          list: [...state.list, ...serverState.list] // Merge client & server lists
+          list: [...state.list, ...serverState.list]
         };
       })
       .addCase(getPokemonList.pending, (state) => {
